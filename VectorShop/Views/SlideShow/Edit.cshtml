@@ -1,0 +1,79 @@
+﻿@model VectorShop.Models.ViewModels.SlideShowViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "ویرایش اسلاید شو";
+}
+
+
+@using (Html.BeginForm("Edit", "SlideShow", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model=>model.SlideShowId)
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.SlideShowTitle, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SlideShowTitle, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.SlideShowTitle, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SlideShowDescription, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SlideShowDescription, new {htmlAttributes = new {@class = "form-control", @rows = "10"}})
+                @Html.ValidationMessageFor(model => model.SlideShowDescription, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SlideShowPictrure, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+
+
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <span class="btn btn-default btn-file">
+                        <span class="fileupload-new">تغییر عکس</span>
+                        <span class="fileupload-exists">تغییر عکس</span>
+                        <input type="file" name="SlideShowPictrure" id="SlideShowPictrure" title="اضافه کردن عکس" accept=".jpg,.jpeg,.gif,.png" />
+                    </span>
+                    <span class="fileupload-preview"></span>
+                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                </div>
+                <br/>
+                <br/>
+                عکس فعلی اسلاید شو
+                <img src="@Model.SlideShowPictrure" title="عکس فعلی اسلاید شو" width="100" alt="عکس فعلی محصول"/>
+
+
+                @Html.ValidationMessageFor(model => model.SlideShowPictrure, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SlideShowLink, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SlideShowLink, new {htmlAttributes = new {@class = "form-control", @rows = "5"}})
+                @Html.ValidationMessageFor(model => model.SlideShowLink, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ذخیره" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

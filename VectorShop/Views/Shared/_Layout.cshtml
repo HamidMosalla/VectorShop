@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="fa" itemscope itemtype="http://schema.org/Product">
+
+<head prefix="og: http://ogp.me/ns#">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="غلام رضا اکبری نژاد">
+
+    <link rel="shortcut icon" href="~/Content/Images/PageElement/Logo.png">
+    <link rel="alternate" href="/" hreflang="fa" />
+
+    @RenderSection("MetaTags", required: false)
+
+    @*<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">*@
+
+    <title>فروشگاه وکتور | @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64746361-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</head>
+
+
+<body>
+
+    <noscript>
+        <div id="noscript">
+            جاوا اسکریپت غیرفعال است، برای استفاده بهتر از امکانات سایت لطفا آن را فعال کنید.
+        </div>
+    </noscript>
+
+    <div class="top_bg">
+        <div class="container">
+            <div class="header_top">
+                <div class="top_right">
+                    <ul>
+                        <li><a href="#">راهنما</a></li>|
+                        <li><a href="contact.html">تماس با ما</a></li>
+                    </ul>
+                </div>
+
+                <div class="top_right" style="float: left; margin-left: 40px;">
+                    @Html.Partial("_LoginPartial")
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- header -->
+    <div class="header_bg">
+        <div class="container">
+            <div class="header">
+                <div class="head-t">
+                    <div class="logo">
+                        <a href="/"><img src="/Content/Images/PageElement/Mainlogo.png" class="img-responsive" alt="" /> </a>
+                    </div>
+                    <!-- start header_right -->
+                    <div class="header_right">
+                        <div class="rgt-bottom">
+
+                            <div class="create_btn">
+                                <a href="checkout.html">تکمیل خرید</a>
+                            </div>
+
+                            <div class="create_btn">
+                                <a href="checkout.html">خالی کردن سبد</a>
+                            </div>
+
+                            <div class="cart box_1">
+                                <a href="checkout.html">
+                                    <h3>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>  <span>1000 تومان</span> (<span>0</span> ایتم سبد)
+                                    </h3>
+                                </a>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div style="direction: ltr;" class="search">
+                            <form action="/Home/Search" role="search">
+                                <input type="text" value="" style="direction: rtl;" name="q" id="q" placeholder="جستجو">
+                                <input type="submit" value="">
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- start header menu -->
+                <ul class="megamenu skyblue myNavbarActive">
+                    <li id="homeActive" class="grid"><a class="color1" href="/Home/Index">صفحه اصلی</a></li>
+                    <li class="grid"><a class="color2" href="/Product/Index">محصولات</a></li>
+                    <li class="grid"><a class="color3" href="/Article/Index">مقالات</a></li>
+                    <li class="grid"><a class="color4" href="/NewDesignOrder/Create">سفارش محصول</a></li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li class="grid"><a class="color5" href="/ControlPanel/Index">مدیریت</a></li>
+                    }
+                    <li class="grid"><a class="color6" href="/Home/About">درباره</a></li>
+                    <li class="grid"><a class="color7" href="/Contact/Create">تماس با ما</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="container">
+
+        <div class="col-md-10" style="margin: 0; padding: 0; padding-left: 15px;">
+            @RenderBody()
+        </div>
+
+
+        <div class="col-md-2" style="margin: 0; padding: 0;">
+            <div class="w_sidebar">
+
+                <section class="sky-form links">
+                    <h4 class="text-center">آخرین مقالات</h4>
+
+                    <div style="margin: 5px; padding: 5px;">
+                        @{ Html.RenderAction("ArticlePartial", "Article"); }
+                    </div>
+                </section>
+
+                <section class="sky-form links">
+                    <h4 class="text-center">لینک دونی</h4>
+
+                    <div style="margin: 5px; padding: 5px;">
+                        @{ Html.RenderAction("LinkPartial", "Link"); }
+                    </div>
+                </section>
+
+                <section class="sky-form links">
+                    <h4 class="text-center">دسته بندی محصولات</h4>
+
+                    <div style="margin: 5px; padding: 5px;">
+                        @{ Html.RenderAction("ProductsCatPartial", "Product"); }
+                    </div>
+                </section>
+
+                <section class="sky-form img-responsive">
+                    <h4 class="text-center">تبلیغات</h4>
+
+                    <div class="center  ">
+                        @{ Html.RenderAction("AdvertPartial", "Advert"); }
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <footer style="text-align: center;">
+        <div class="footer">
+            <div class="row">
+
+
+
+                <div class="col-md-4 col-md-offset-1 " style="padding-top: 50px; text-align: right;">
+                    <h4>راهنمای خرید</h4>
+                    <p>
+                        <a href="/NewsLetter/Create">چطور می توانم هزینه سفارش را پرداخت کنم؟</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">چطور سفارش برای من ارسال می شود؟</a>
+                    </p>
+                    <p>
+                        <a href="/NewsLetter/Create">آیا می توانم طرح جدید سفارش دهم؟</a>
+                    </p>
+                </div>
+
+
+
+
+                <div class="col-md-4 " style="padding-top: 50px; text-align: right;">
+                    <h4>لینک ها</h4>
+
+                    <p>
+                        <a href="/NewsLetter/Create">آخرین محصولات</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">آخرین مقالات</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">سفارش محصول</a>
+                    </p>
+                </div>
+
+
+
+
+                <div class="col-md-3" style="padding-top: 50px; text-align: right;">
+                    <h4>تماس با ما</h4>
+                    <br />
+                    <a class="btn btn-default" href="/Contact/Create">فرم تماس با ما</a>
+
+                    <a class="btn btn-default" href="/NewsLetter/Create">عضویت در خبرنامه</a>
+
+                    <p> Info@VectorShop.ir &nbsp;<span class="glyphicon glyphicon-envelope"></span> </p>
+                    <p> 09177918849 &nbsp;<span class="glyphicon glyphicon-phone-alt"></span> </p>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; background-color: black;">
+                <p style="color: white;">&copy; @DateTime.Now.Year - کپی برداری از مطالب این سایت فقط با ذکر منبع و دادن لینک مستقیم (هایپر لینک) امکان پذیر میباشد.</p>
+                <p style="margin: 0; padding: 0; color: white;">
+                    طراحی و ساخت: &nbsp;<a href="http://webfor.ir">وب برای ایران</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

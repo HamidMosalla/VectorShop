@@ -1,0 +1,56 @@
+﻿@model VectorShop.Models.Contact
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "جزئیات تماس";
+}
+
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <span class="glyphicon glyphicon-calendar"></span>
+        </dt>
+
+        <dd>
+            @PersianDateTime.GregorianDateToPersianLong(Model.ContactDate)
+        </dd>
+
+        <dt>
+            <span class="glyphicon glyphicon-user"></span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactName)
+        </dd>
+
+        <dt>
+            <span class="glyphicon glyphicon-envelope"></span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactEmail)
+        </dd>
+
+        <dt>
+            <span class="glyphicon glyphicon-phone"></span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPhone)
+        </dd>
+
+        <br />
+        <dt>
+            <span class="glyphicon glyphicon-pencil"></span>
+        </dt>
+        
+        <dd style="margin-left: 200px; margin-right: 200px;">
+            @Html.DisplayFor(model => model.ContactBody)
+        </dd>
+
+    </dl>
+</div>

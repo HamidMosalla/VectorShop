@@ -1,0 +1,57 @@
+﻿@model VectorShop.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "حذف محصول";
+}
+
+<h3>آیا مطمئن هستید می خواهید این محصول را حذف کنید؟</h3>
+<h4 class="text-warning">توجه: فقط محصولاتی که فاقد سفارش هستند قابل حذف هستند</h4>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            نام محصول
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            رایگان بودن محصول
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsProductFree)
+        </dd>
+        <dt>
+            تاریخ اضافه شدن
+        </dt>
+
+        <dd>
+            @PersianDateTime.GregorianDateToPersianLong(Model.ProductDate)
+        </dd>
+
+        <dt>
+            قیمت محصول
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حدف" class="btn btn-default" /> |
+            @Html.ActionLink("بازگشت به مدیریت محصولات", "ManageProduct")
+        </div>
+    }
+</div>

@@ -1,0 +1,1 @@
+﻿1- Don't just shove your style file anywhere you see, especially your view folders.

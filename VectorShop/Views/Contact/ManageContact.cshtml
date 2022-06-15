@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Contact>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت تماس ها";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام
+        </th>
+
+        <th class="panel-heading">
+            ایمیل
+        </th>
+
+        <th class="panel-heading">
+            شماره تماس
+        </th>
+
+        <th class="panel-heading">
+            تاریخ
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPhone)
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ContactDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new { id = item.ContactId }, new { @class = "ContactDeleteLink" }) |
+                @Html.ActionLink("جزئیات", "Details", new { id = item.ContactId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageContact", new { page }))
+</div>

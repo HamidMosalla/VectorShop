@@ -1,0 +1,80 @@
+﻿@using VectorShop.Helpers
+@model IEnumerable<VectorShop.Models.Product>
+
+@{
+	ViewBag.Title = "آخرین محصولات";
+}
+
+@foreach (var item in Model.Batch(4))
+{
+
+	<div class="row">
+		<div class="col-md-12">
+
+			@foreach (var subitem in item)
+			{
+
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="padding-right: 5px; padding-left: 5px;">
+					<div class="thumbnail">
+						<h4 class="text-center"><span class="label label-default">@subitem.ProductName</span></h4>
+						<p class="text-center" style="font-size: small;">@PersianDateTime.GregorianDateToPersianLong(subitem.ProductDate)</p>
+						<a href="/Product/Details/@subitem.ProductId/@VectorShopUtility.StringDasher(subitem.ProductName)"><img src="@subitem.ProductPicture" alt="@subitem.ProductName" class="img-responsive"></a>
+
+
+						<div class="caption">
+							<div class="row">
+								<div class="col-md-12 col-xs-12 price">
+									<br />
+									<h4 class="text-center">
+										قیمت:
+										@{
+				if (subitem.IsProductFree)
+				{
+								<label style="color: limegreen;">رایگان</label>
+
+				}
+				else
+				{
+								<label>@String.Format("{0:0}", subitem.ProductPrice) تومان</label>
+				}
+										}
+
+									</h4>
+								</div>
+							</div>
+							<div class="row">
+								<div style="font-size: small;" class="col-md-12 col-xs-12 price">
+									
+									@Html.Raw(subitem.ProductDescription.TrimFrontIfLongerThan(200))
+									<a href="/Product/Details/@subitem.ProductId/@VectorShopUtility.StringDasher(subitem.ProductName)">ادامه...</a>
+
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-8">
+									<a href="#" class="btn btn-success" style="width: 100%;"><span class="glyphicon glyphicon-shopping-cart"></span>افزودن به سبد</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			}
+
+		</div>
+	</div>
+
+
+}
+<br/>
+<p id="loadMore" style="text-align: center;">
+
+	<a class="btn btn-danger btn-lg">
+		نمایش محصولات بیشتر &raquo;
+		<span>
+			<img id="loading" style="display: none;" src="~/Content/Images/PageElement/ajax-loader.gif" />
+		</span>
+	</a>
+
+</p>

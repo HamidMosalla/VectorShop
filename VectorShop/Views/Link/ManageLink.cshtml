@@ -1,0 +1,73 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Link>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت لینک ها";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان لینک
+        </th>
+
+        <th class="panel-heading">
+            اولویت لینک
+        </th>
+
+        <th class="panel-heading">
+            آدرس لینک
+        </th>
+
+        <th class="panel-heading">
+            توضیحات لینک
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+
+                @Html.DisplayFor(modelItem => item.LinkTitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkPriority)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkUrl)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkDesc)
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new {id = item.LinkId}, new {@class = "LinkDeleteLink"}) |
+                @Html.ActionLink("ویرایش", "Edit", new {id = item.LinkId})
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageLink", new { page }))
+</div>

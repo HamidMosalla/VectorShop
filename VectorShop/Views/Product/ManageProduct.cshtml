@@ -1,0 +1,115 @@
+﻿@model PaginatedList<VectorShop.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت محصولات";
+}
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام محصول
+        </th>
+
+        <th class="panel-heading">
+            رایگان بودن محصول
+        </th>
+
+        <th class="panel-heading">
+            نمایش در صفحه اصلی
+        </th>
+
+        <th class="panel-heading">
+            تاریخ اضافه شدن
+        </th>
+
+        <th class="panel-heading">
+            قیمت محصول
+        </th>
+        <th class="panel-heading">
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+
+            <td>
+                @if (item.IsProductFree)
+                {
+                    @: بلی
+                }
+                else
+                {
+                    @: خیر
+                }
+
+            </td>
+
+            <td>
+                @if (item.IsProductIsInIndex)
+                {
+                    @: بلی
+                }
+                else
+                {
+                    @: خیر
+                }
+
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ProductDate)
+            </td>
+
+            <td>
+                @String.Format("{0:0}", item.ProductPrice)
+            </td>
+
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("جزئیات", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.ProductId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+<div class="text-center">
+
+    <ul id="PaginationIndex" data-pageindex="@Model.PageIndex" class="pagination">
+
+        <li><a href="/Product/ManageProduct/Page/@Model.TotalPages">&laquo;&laquo;</a></li>
+
+        @if (Model.HasNextPage)
+        {
+            <li><a href="/Product/ManageProduct/Page/@(Model.PageIndex + 1) ">&laquo;</a></li>
+        }
+
+        @for (int i = Model.TotalPages; i >= 0; i--)
+        {
+            <li class="PaginationAnchor"><a href="/Product/ManageProduct/Page/@i">@i</a></li>
+        }
+
+        @if (Model.HasPreviousPage)
+        {
+            <li><a href="/Product/ManageProduct/Page/@(Model.PageIndex - 1) ">&raquo;</a></li>
+        }
+
+        <li><a href="/Product/ManageProduct/Page/0">&raquo;&raquo;</a></li>
+
+    </ul>
+
+</div>

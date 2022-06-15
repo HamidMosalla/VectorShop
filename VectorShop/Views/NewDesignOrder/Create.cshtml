@@ -1,0 +1,118 @@
+﻿@model VectorShop.Models.ViewModels.NewDesignOrderViewModel
+
+@{
+    ViewBag.Title = "ثبت سفارش جدید";
+}
+
+
+@using (Html.BeginForm("Create", "NewDesignOrder", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderWebSite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderWebSite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderWebSite, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderDescBody, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderDescBody, new { htmlAttributes = new { @class = "form-control", @rows = "10" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderDescBody, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <span class="btn btn-default btn-file">
+                        <span class="fileupload-new">انتخاب عکس</span>
+                        <span class="fileupload-exists">تغییر عکس</span>
+                        <input type="file" name="NewDesignOrderPicture" id="NewDesignOrderPicture" title="اضافه کردن عکس" accept=".jpg,.jpeg,.gif,.png" />
+                    </span>
+                    <span class="fileupload-preview"></span>
+                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                </div>
+
+
+                @Html.ValidationMessageFor(model => model.NewDesignOrderPicture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderMaxAffordablePrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderMaxAffordablePrice, new { htmlAttributes = new { @class = "form-control", @placeholder="حداکثر مبلغ قابل پرداخت به تومان" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderMaxAffordablePrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewDesignOrderHowFindUs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NewDesignOrderHowFindUs, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewDesignOrderHowFindUs, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="g-recaptcha" data-sitekey="6Le2XggTAAAAAH9GPvmVBG0xvquG6YlTDegmYLgt"></div>
+                <br />
+                <input type="submit" value="ارسال" class="btn btn-default"/>
+            </div>
+        </div>
+    </div>
+}
+<script src='https://www.google.com/recaptcha/api.js?hl=fa'></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

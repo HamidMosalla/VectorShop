@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Article>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت مقاله";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان مقاله
+        </th>
+
+        <th class="panel-heading">
+            تاریخ مقاله
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ArticleTitle)
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ArticleDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new { id = item.ArticleId }, new { @class = "ArticleDeleteLink" }) |
+                @Html.ActionLink("جزئیات", "Details", new { id = item.ArticleId }) |
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.ArticleId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageArticle", new { page }))
+</div>

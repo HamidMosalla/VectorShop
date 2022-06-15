@@ -1,0 +1,181 @@
+﻿@model VectorShop.Models.ViewModels.ProductViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "ویرایش محصول";
+}
+
+
+<script src="~/Content/tinymce/tinymce.min.js"></script>
+<script>
+tinymce.init({
+
+    selector: 'textarea',
+    relative_urls: false,
+    directionality: 'rtl',
+    height: 350,
+    theme: "modern",
+    file_browser_callback: function (field_name, url, type, win) {
+        tinymce.activeEditor.windowManager.open({
+            file: "/FileManager/Files",// use an absolute path!
+            title: 'Vector Shop File Manager',
+            width: 900,
+            height: 450,
+            resizable: 'yes'
+        }, {
+            setUrl: function (url) {
+                win.document.getElementById(field_name).value = url;
+            }
+        });
+        return false;
+    },
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar1: "insertfile | styleselect | bold italic | ltr rtl | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media ",
+    toolbar2: "print preview code fullscreen | undo redo fontselect fontsizeselect forecolor backcolor emoticons",
+    image_advtab: true,
+    templates: [
+        {title: 'Test template 1', content: 'Test 1'},
+        {title: 'Test template 2', content: 'Test 2'}
+    ]
+
+});</script>
+
+
+<h2>ویرایش محصول</h2>
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.HiddenFor(model => model.ProductId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName,"نام محصول" , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductPicture, "عکس محصول", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <span class="btn btn-default btn-file">
+                        <span class="fileupload-new">تغییر عکس</span>
+                        <span class="fileupload-exists">تغییر عکس</span>
+                        <input type="file" name="ProductPicture" id="ProductPicture" title="اضافه کردن عکس" accept=".jpg,.jpeg,.gif,.png" />
+                    </span>
+                    <span class="fileupload-preview"></span>
+                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                </div>
+                <br />
+                <br />
+                عکس فعلی محصول
+                <img src="@Model.ProductPicture" title="عکس فعلی محصول" width="100" alt="عکس فعلی محصول" />
+                @Html.ValidationMessageFor(model => model.ProductPicture, "", new {@class = "text-danger"})
+            </div>
+            
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, "توضیحات محصول", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsProductFree, "رایگان بودن محصول", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsProductFree)
+                    @Html.ValidationMessageFor(model => model.IsProductFree, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsProductIsInIndex, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsProductIsInIndex)
+                    @Html.ValidationMessageFor(model => model.IsProductIsInIndex, "", new {@class = "text-danger"})
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDownloadLink, "فایل محصول", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <span class="btn btn-default btn-file">
+                        <span class="fileupload-new">تغییر فایل</span>
+                        <span class="fileupload-exists">تغییر فایل</span>
+                        <input type="file" name="ProductDownloadLink" id="ProductDownloadLink" title="اضافه کردن فایل" />
+                    </span>
+                    <span class="fileupload-preview"></span>
+                    <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+                </div>
+
+
+
+                @Html.ValidationMessageFor(model => model.ProductDownloadLink, "", new { @class = "text-danger" })
+                <br />
+                <br />
+                فایل فعلی محصول
+                <label style="color: limegreen; direction: ltr;">@Path.GetFileName(Model.ProductDownloadLink)</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductPrice, "قیمت محصول", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriCatIDfk, "دسته بندی اصلی", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PriCatIDfk, new SelectList(ViewBag.priCatList, "Value", "Text"), "لطفا یک دسته بندی اصلی انتخاب کنید", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PriCatIDfk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecCatIDfk, "دسته بندی فرعی", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SecCatIDfk, new SelectList(ViewBag.secCatList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(model => model.SecCatIDfk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ثبت" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

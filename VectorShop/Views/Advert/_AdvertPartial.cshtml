@@ -1,0 +1,6 @@
+﻿@model IEnumerable<VectorShop.Models.Advert>
+
+@foreach (var item in Model)
+{
+    <a href="@item.AdvertUrl" title="@item.AdvertTitle"><img src="@item.AdvertPicture" class="img-responsive" style="margin-bottom: 2px;"></a>
+}

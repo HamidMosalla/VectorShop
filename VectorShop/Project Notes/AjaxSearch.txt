@@ -1,0 +1,67 @@
+//code dealing with showing result in search page
+    $(function () {
+
+        $("#searchForm").on("submit", function (e) {
+            e.preventDefault();
+            var form = $("#searchForm");
+            var proSort = $("#proSort").val();
+            var markup = "";
+            $.ajax({
+                
+                url: "/Home/SearchAjax",
+                data: form.serialize() + "&" + { proSort: proSort , page:1},
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length !== 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            markup += "<tr>" + "<td>" + "<a href=\"/Product/Details/" + data[i].ProductId + "/" + data[i].ProductName + "\">" + data[i].ProductName + "</a>" + "</td>" + "</tr>";
+                            
+                        }
+                    }
+
+                    $("#searchHeader").after(markup);
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert("message : \n" + "An error occurred, for more info check the js console" + "\n status : \n" + status + " \n error : \n" + error);
+                }
+
+
+            });
+
+        });
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+public ActionResult SearchAjax(string q, int? page, string proSort)
+        {
+            //IQueryable<Product> model;
+            _db.Configuration.ProxyCreationEnabled = false;
+            var model = proSort == "Newest" ?
+                _db.Products.OrderByDescending(p => p.ProductId).Where(p => p.ProductName.Contains(q)) :
+                        proSort == "Oldest" ?
+                        _db.Products.OrderBy(p => p.ProductId).Where(p => p.ProductName.Contains(q)) :
+                        proSort == "Price" ?
+                        _db.Products.OrderByDescending(p => p.ProductPrice).Where(p => p.ProductName.Contains(q))
+                : _db.Products.OrderByDescending(p => p.ProductId).Where(p => p.ProductName.Contains(q));
+
+            ViewBag.ProductCount = model.Count();
+            var pageNumber = page ?? 1;
+            var onePageOfProduct = model.ToPagedList(pageNumber, 2);
+            //TODO: Increase the paging size when project finished.
+            return Json(onePageOfProduct);
+        }

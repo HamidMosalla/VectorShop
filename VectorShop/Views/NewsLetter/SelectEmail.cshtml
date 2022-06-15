@@ -1,0 +1,198 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.NewsLetter>
+@using PagedList
+@using PagedList.Mvc
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "انتخاب ایمیل";
+}
+
+<div class="row col-sm-6 col-md-6 col-md-offset-4">
+    <p class="text-center">مجموعه ایمیل های انتخاب شده: @ViewBag.SelectedMail</p>
+
+    <form action="/NewsLetter/SelectEmail" class="navbar-form" role="search">
+
+        دسته بندی اصلی: &nbsp;
+        <select id="priCat" name="priCat">
+            <option value="0">انتخاب دسته بندی</option>
+            <option value="nullValue">فاقد علاقه مندی</option>
+            @foreach (var item in ViewBag.PriCategory)
+            {
+                <option value="@item.PriCatId">@item.PriCatTitle</option>
+            }
+        </select>
+        <br />
+        دسته بندی فرعی: &nbsp;
+        <select id="secCat" name="secCat">
+            <option value="0">انتخاب دسته بندی</option>
+            <option value="nullValue">فاقد علاقه مندی</option>
+            @foreach (var item in ViewBag.SecCategory)
+            {
+                <option value="@item.SecCatId">@item.SecCatTitle</option>
+            }
+        </select>
+        <br />
+        <br />
+        <button class="btn btn-default col-md-offset-4" type="submit"> نمایش بر اساس علاقه مندی</button>
+
+    </form>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr class="panel panel-default">
+
+            <th class="panel-heading">
+                نام عضو
+            </th>
+
+            <th class="panel-heading">
+                ایمیل عضو
+            </th>
+
+            <th class="panel-heading">
+                علاقه مندی اصلی عضو
+            </th>
+
+            <th class="panel-heading">
+                علاقه مندی فرعی عضو
+            </th>
+
+            <th class="panel-heading">
+                فعال بودن عضو
+            </th>
+
+            <th class="panel-heading">
+                <input type="checkbox" id="selectAllEmail" />&nbsp;
+                انتخاب بودن عضو
+            </th>
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsLetterSubscriberName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NewsLetterEmail)
+                </td>
+
+                <td>
+                    @(item.PriCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => item.PriCat.PriCatTitle).ToString())
+                </td>
+
+                <td>
+                    @(item.SecCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => item.SecCat.SecCatTitle).ToString())
+                </td>
+
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <span style="color: green">بلی</span>
+                    }
+                    else
+                    {
+                        <span style="color: #d54d4d">خیر</span>
+                    }
+
+                </td>
+
+                <td>
+                    @Html.EditorFor(model => item.IsSelected, new { htmlAttributes = new { @class = "SelectEmailPage", data_EmailId = @item.NewsLetterId } })
+
+
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+}
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("SelectEmail", new { page, priCat = Request["priCat"], secCat = Request["secCat"] }))
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].NewsLetterSubscriberName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].NewsLetterEmail)
+            </td>
+
+            <td>
+                @(Model[i].PriCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => Model[i].PriCat.PriCatTitle).ToString())
+            </td>
+
+            <td>
+                @(Model[i].SecCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => Model[i].SecCat.SecCatTitle).ToString())
+            </td>
+
+            <td>
+                @if (Model[i].IsActive)
+                {
+                    <span style="color: green">بلی</span>
+                }
+                else
+                {
+                    <span style="color: #d54d4d">خیر</span>
+                }
+
+            </td>
+
+            <td>
+                @*<input type="checkbox" name="IsSelected" checked="@item.IsSelected" value="@item.IsSelected.ToString()"/> ToString because the value will be empty*@
+@*<input type="hidden" name="IsSelected" value="@item.IsSelected" />*@
+@*<input type="hidden" name="NewsLetterId" value="@item.NewsLetterId" />*@
+@*@Html.EditorFor(model => Model[i].IsSelected)*@
+@* @Html.HiddenFor(model => item.NewsLetterId)*@
+@*@Html.CheckBoxFor(model => item.IsSelected)*@
+@*</td>
+
+        </tr>
+    }
+
+        </table>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

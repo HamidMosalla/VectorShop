@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="fa" itemscope itemtype="http://schema.org/Product">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="غلام رضا اکبری نژاد">
+
+    <link rel="shortcut icon" href="~/Content/Images/PageElement/Logo.png">
+    <link rel="alternate" href="/" hreflang="fa" />
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        @@font-face {
+            font-family: 'RoyaBold';
+            src: url('../fonts/FarsiFonts/RoyaBold.otf') format('opentype'), url('../fonts/FarsiFonts/RoyaBold.ttf') format('truetype');
+        }
+
+        .nav-side-menu {
+            overflow: auto;
+            font-family: "RoyaBold",Arial,Tahoma,Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 12px;
+            font-weight: 200;
+            /*background-color: #2e353d;*/
+            background-color: #141414;
+            position: fixed;
+            top: 0px;
+            width: 300px;
+            height: 100%;
+            color: #e1ffff;
+        }
+
+            .nav-side-menu .brand {
+                background-color: #23282e;
+                line-height: 50px;
+                display: block;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .nav-side-menu .toggle-btn {
+                display: none;
+            }
+
+            .nav-side-menu ul,
+            .nav-side-menu li {
+                list-style: none;
+                padding: 0px;
+                margin: 0px;
+                line-height: 35px;
+                cursor: pointer;
+            }
+
+                .nav-side-menu ul :not(collapsed) .arrow:before,
+                .nav-side-menu li :not(collapsed) .arrow:before {
+                    font-family: FontAwesome;
+                    content: "\f078";
+                    display: inline-block;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    vertical-align: middle;
+                    float: right;
+                }
+
+                .nav-side-menu ul .active,
+                .nav-side-menu li .active {
+                    border-left: 3px solid #d19b3d;
+                    background-color: #4f5b69;
+                }
+
+                .nav-side-menu ul .sub-menu li.active,
+                .nav-side-menu li .sub-menu li.active {
+                    color: #d19b3d;
+                }
+
+                    .nav-side-menu ul .sub-menu li.active a,
+                    .nav-side-menu li .sub-menu li.active a {
+                        color: #d19b3d;
+                    }
+
+                .nav-side-menu ul .sub-menu li,
+                .nav-side-menu li .sub-menu li {
+                    background-color: #181c20;
+                    border: none;
+                    line-height: 28px;
+                    border-bottom: 1px solid #23282e;
+                    margin-left: 0px;
+                }
+
+                    .nav-side-menu ul .sub-menu li:hover,
+                    .nav-side-menu li .sub-menu li:hover {
+                        background-color: #020203;
+                    }
+
+                    .nav-side-menu ul .sub-menu li:before,
+                    .nav-side-menu li .sub-menu li:before {
+                        font-family: FontAwesome;
+                        content: "\f104";
+                        display: inline-block;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        vertical-align: middle;
+                    }
+
+            .nav-side-menu li {
+                padding-left: 0px;
+                border-left: 3px solid #141414;
+                border-bottom: 1px solid #23282e;
+            }
+
+                .nav-side-menu li a {
+                    text-decoration: none;
+                    color: #e1ffff;
+                }
+
+                    .nav-side-menu li a i {
+                        padding-left: 10px;
+                        width: 20px;
+                        padding-right: 20px;
+                    }
+
+                .nav-side-menu li:hover {
+                    border-left: 3px solid #d19b3d;
+                    background-color: #4f5b69;
+                    -webkit-transition: all 1s ease;
+                    -moz-transition: all 1s ease;
+                    -o-transition: all 1s ease;
+                    -ms-transition: all 1s ease;
+                    transition: all 1s ease;
+                }
+
+        @@media (max-width: 767px) {
+            .nav-side-menu {
+                position: relative;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+                .nav-side-menu .toggle-btn {
+                    display: block;
+                    cursor: pointer;
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    z-index: 10 !important;
+                    padding: 3px;
+                    background-color: #ffffff;
+                    color: #000;
+                    width: 40px;
+                    text-align: center;
+                }
+
+            .brand {
+                text-align: left !important;
+                font-size: 22px;
+                padding-left: 20px;
+                line-height: 50px !important;
+            }
+        }
+
+        @@media (min-width: 767px) {
+            .nav-side-menu .menu-list .menu-content {
+                display: block;
+            }
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+
+    @*<link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">*@
+
+    <title>فروشگاه وکتور | @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+
+
+
+<body>
+
+    <noscript>
+        <div id="noscript">
+            جاوا اسکریپت غیرفعال است، برای استفاده بهتر از امکانات سایت لطفا آن را فعال کنید.
+        </div>
+    </noscript>
+
+    <div class="top_bg">
+        <div class="container">
+            <div class="header_top">
+                <div class="top_right">
+                    <ul>
+                        <li><a href="#">راهنما</a></li>|
+                        <li><a href="contact.html">تماس با ما</a></li>
+                    </ul>
+                </div>
+
+                <div class="top_right" style="float: left; margin-left: 40px;">
+                    @Html.Partial("_LoginPartial")
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- header -->
+    <div class="header_bg">
+        <div class="container">
+            <div class="header">
+                <div class="head-t">
+                    <div class="logo">
+                        <a href="/"><img src="/Content/Images/PageElement/Mainlogo.png" class="img-responsive" alt="" /> </a>
+                    </div>
+                    <!-- start header_right -->
+                    <div class="header_right">
+                        <div class="rgt-bottom">
+
+                            <div class="create_btn">
+                                <a href="checkout.html">تکمیل خرید</a>
+                            </div>
+
+                            <div class="create_btn">
+                                <a href="checkout.html">خالی کردن سبد</a>
+                            </div>
+
+                            <div class="cart box_1">
+                                <a href="checkout.html">
+                                    <h3>
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>  <span>1000 تومان</span> (<span>0</span> ایتم سبد)
+                                    </h3>
+                                </a>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div style="direction: ltr;" class="search">
+                            <form action="/Home/Search" role="search">
+                                <input type="text" value="" style="direction: rtl;" name="q" id="q" placeholder="جستجو">
+                                <input type="submit" value="">
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!-- start header menu -->
+                <ul class="megamenu skyblue myNavbarActive">
+                    <li id="homeActive" class="grid"><a class="color1" href="/Home/Index">صفحه اصلی</a></li>
+                    <li class="grid"><a class="color2" href="/Product/Index">محصولات</a></li>
+                    <li class="grid"><a class="color3" href="/Article/Index">مقالات</a></li>
+                    <li class="grid"><a class="color4" href="/NewDesignOrder/Create">سفارش محصول</a></li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li class="grid"><a class="color5" href="/ControlPanel/Index">مدیریت</a></li>
+                    }
+                    <li class="grid"><a class="color6" href="/Home/About">درباره</a></li>
+                    <li class="grid"><a class="color7" href="/Contact/Create">تماس با ما</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="container-fluid body-content">
+
+        <div class="row" style="overflow: hidden;">
+
+            <div class="col-md-2 nav-side-menu" style="margin-bottom: -100%; padding-bottom: 100%;">
+
+
+                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                <div class="menu-list">
+
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                            <a href="/ControlPanel/Index">
+                                <i class="fa fa-dashboard fa-lg"></i> &nbsp; کنترل پنل
+                            </a>
+                        </li>
+
+                        <li data-toggle="collapse" data-target="#products" class="collapsed">
+                            <a href="javascript:void(0);"><i class="fa fa-gift fa-lg"></i> &nbsp; محصولات <span class="arrow pull-left"></span></a>
+                        </li>
+                        <ul class="sub-menu collapse" id="products">
+                            <li><a href="/Product/Create">ایجاد محصول جدید</a></li>
+                            <li><a href="/Product/ManageProduct">مدیریت محصولات</a></li>
+                        </ul>
+
+
+                        <li data-toggle="collapse" data-target="#article" class="collapsed">
+                            <a href="javascript:void(0);"><i class="fa fa-book fa-lg"></i> &nbsp; مقالات <span class="arrow pull-left"></span></a>
+                        </li>
+                        <ul class="sub-menu collapse" id="article">
+                            <li><a href="/Article/Create">ایجاد مقالات</a></li>
+                            <li><a href="/Article/ManageArticle">مدیریت مقالات</a></li>
+                        </ul>
+
+
+                        <li data-toggle="collapse" data-target="#category" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-tag fa-lg"></i> &nbsp; دسته بندی ها <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="category">
+                            <li><a href="/Category/Create">مدیریت دسته بندی ها</a></li>
+                        </ul>
+
+
+                        <li>
+                            <a href="/FileManager/Files" target="_blank"> <i class="fa fa-file fa-lg"></i> &nbsp; مدیریت فایل </a>
+                        </li>
+
+
+                        <li data-toggle="collapse" data-target="#advert" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-photo fa-lg"></i> &nbsp; تبلیغات <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="advert">
+                            <li><a href="/Advert/Create">ایجاد تبلیغ</a></li>
+                            <li><a href="/Advert/ManageAdvert">مدیریت تبلیغ</a></li>
+                        </ul>
+
+
+                        <li>
+                            <a href="/Contact/ManageContact"> <i class="fa fa-user fa-lg"></i> &nbsp; مدیریت ارتباط با ما </a>
+                        </li>
+
+                        <li>
+                            <a href="/Home/AboutEdit"> <i class="fa fa-child fa-lg"></i> &nbsp; مدیریت درباره </a>
+                        </li>
+
+
+
+                        <li data-toggle="collapse" data-target="#link" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-link fa-lg"></i> &nbsp; لینک ها <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="link">
+                            <li><a href="/Link/Create">ایجاد لینک</a></li>
+                            <li><a href="/Link/ManageLink">مدیریت لینک</a></li>
+                        </ul>
+
+
+                        <li>
+                            <a href="/NewDesignOrder/ManageNewDesignOrder"> <i class="fa fa-check-square fa-lg"></i> &nbsp; مدیریت سفارشات </a>
+                        </li>
+
+
+                        <li data-toggle="collapse" data-target="#NewsLetter" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-envelope fa-lg"></i> &nbsp; خبرنامه و ایمیل <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="NewsLetter">
+
+                            <li><a href="/NewsLetter/ManageNewsLetter">مدیریت اعضای خبرنامه</a></li>
+                            <li><a href="/NewsLetter/SelectEmail">انتخاب لیست ایمیل</a></li>
+                            <li><a href="/NewsLetter/SendMail">ارسال ایمیل به اعضای خبرنامه</a></li>
+                            <li><a href="/NewsLetter/Subscribe" target="_blank">ثبت نام در خبرنامه</a></li>
+                            <li><a href="/NewsLetter/UnSubscribe" target="_blank">لغو عضویت در خبرنامه</a></li>
+                        </ul>
+
+
+
+                        <li data-toggle="collapse" data-target="#SlideShow" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-newspaper-o fa-lg"></i> &nbsp; اسلایدها <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="SlideShow">
+                            <li><a href="/SlideShow/Create">ایجاد اسلاید</a></li>
+                            <li><a href="/SlideShow/ManageSlideShow">مدیریت اسلاید</a></li>
+                            <li><a href="/ControlPanel/SlideShowNumber">انتخاب تعداد اسلاید</a></li>
+                        </ul>
+
+
+
+                        <li>
+                            <a href="/ControlPanel/GoogleAnalytics"> <i class="fa fa-globe fa-lg"></i> &nbsp; بازدیدها </a>
+                        </li>
+
+
+                        <li data-toggle="collapse" data-target="#Manage" class="collapsed">
+                            <a href="javascript:void(0);"> <i class="fa fa-gears fa-lg"></i> &nbsp; ناحیه کاربری <span class="arrow pull-left"></span>  </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="Manage">
+                            <li><a href="/Manage/ChangePassword">تغییر پسورد</a></li>
+                            <li><a target="_blank" href="/Elmah">مرکز ثبت خطا</a></li>
+                        </ul>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer style="text-align: center;">
+        <div class="footer">
+            <div class="row">
+
+
+
+                <div class="col-md-4 col-md-offset-1 " style="padding-top: 50px; text-align: right;">
+                    <h4>راهنمای خرید</h4>
+                    <p>
+                        <a href="/NewsLetter/Create">چطور می توانم هزینه سفارش را پرداخت کنم؟</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">چطور سفارش برای من ارسال می شود؟</a>
+                    </p>
+                    <p>
+                        <a href="/NewsLetter/Create">آیا می توانم طرح جدید سفارش دهم؟</a>
+                    </p>
+                </div>
+
+
+
+
+                <div class="col-md-4 " style="padding-top: 50px; text-align: right;">
+                    <h4>لینک ها</h4>
+
+                    <p>
+                        <a href="/NewsLetter/Create">آخرین محصولات</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">آخرین مقالات</a>
+                    </p>
+
+                    <p>
+                        <a href="/NewsLetter/Create">سفارش محصول</a>
+                    </p>
+                </div>
+
+
+
+
+                <div class="col-md-3" style="padding-top: 50px; text-align: right;">
+                    <h4>تماس با ما</h4>
+                    <br />
+                    <a class="btn btn-default" href="/Contact/Create">فرم تماس با ما</a>
+
+                    <a class="btn btn-default" href="/NewsLetter/Create">عضویت در خبرنامه</a>
+
+                    <p> Info@VectorShop.ir &nbsp;<span class="glyphicon glyphicon-envelope"></span> </p>
+                    <p> 09177918849 &nbsp;<span class="glyphicon glyphicon-phone-alt"></span> </p>
+                </div>
+
+            </div>
+
+            <div style="text-align: center; background-color: black;">
+                <p style="color: white;">&copy; @DateTime.Now.Year - کپی برداری از مطالب این سایت فقط با ذکر منبع و دادن لینک مستقیم (هایپر لینک) امکان پذیر میباشد.</p>
+                <p style="margin: 0; padding: 0; color: white;">
+                    طراحی و ساخت: &nbsp;<a href="http://webfor.ir">وب برای ایران</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+

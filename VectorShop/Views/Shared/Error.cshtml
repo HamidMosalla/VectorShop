@@ -1,0 +1,29 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "خطا";
+}
+
+<div class="container" style="text-align: center;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    خطا!
+                </h1>
+                <h2>
+                  پردازش درخواست شما موفقیت آمیز نبود.
+                </h2>
+                <div class="error-details">
+                    با عرض پوزش خطایی در پردازش درخواست شما به وجود آمده، لطفا دوباره تلاش کنید یا با مدیریت سایت تماس بگیرید.
+                </div>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-home"></span>
+                        خانه
+                    </a><a href="/Contact/Create" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> تماس با مدیریت </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

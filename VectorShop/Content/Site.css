@@ -1,0 +1,797 @@
+﻿body {
+    /*padding-top: 50px;*/
+    padding-bottom: 0;
+    font-family: "RoyaBold",Arial,Tahoma,Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "RoyaBold",Arial,Tahoma,Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+@font-face {
+    font-family: 'RoyaBold';
+    src: url('../fonts/FarsiFonts/RoyaBold.otf') format('opentype'), url('../fonts/FarsiFonts/RoyaBold.ttf') format('truetype');
+}
+
+ul, ol {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.links a {
+    color: #555555;
+    font-size: 0.8725em;
+}
+
+td {
+    font-size: medium;  
+}
+
+html, body {
+    font-family: "RoyaBold",Arial,Tahoma,Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 100%;
+    background: #ffffff;
+}
+
+    body a {
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+    }
+
+
+.box_1 {
+    float: right;
+}
+
+    .box_1 h3 {
+        color: #7A8499;
+        font-size: 1em;
+        float: left;
+    }
+
+        .box_1 h3 img {
+            margin-left: 5px;
+        }
+
+    .box_1 p {
+        float: right;
+    }
+
+/*--checkout--*/
+.cart h2 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+
+/*-- header_top --*/
+.top_bg {
+    background: #252525;
+}
+
+.header_top {
+    padding: 15px 0 5px;
+}
+
+.top_right {
+    float: right;
+    color: #ffffff;
+    margin-top: -5px;
+}
+
+    .top_right ul {
+        padding: 0;
+        list-style: none;
+    }
+
+        .top_right ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            .top_right ul li:last-child {
+                margin-right: 0;
+            }
+
+            .top_right ul li a {
+                text-align: center;
+                padding: 0px 4px;
+                font-size: 12px;
+                display: block;
+                color: #ffffff;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+                .top_right ul li a:hover {
+                    color: #ff6978;
+                    text-decoration: none;
+                }
+
+
+
+.box_1 {
+    float: right;
+    margin: 0.55em 0.1em 0;
+    width: 38%;
+}
+
+    .box_1 h3 {
+        color: #000;
+        font-size: 0.85em;
+        margin-bottom: 0;
+        float: left;
+    }
+
+        .box_1 h3 img {
+            margin-left: 5px;
+        }
+
+    .box_1 p {
+        color: #000;
+        font-size: 0.85em;
+        float: left;
+        margin: 0.5em 0.3em 0;
+        text-align: left;
+    }
+
+input:focus {
+    outline: none;
+}
+/*-- header --*/
+.logo {
+    float: left;
+    margin: 1.5em 0;
+}
+
+.header_right {
+    float: right;
+    width: 40%;
+}
+
+.head-t {
+    padding: 1em 0;
+}
+/*search*/
+.search {
+    position: relative;
+    background: #f3f4f5;
+    border: 1px solid #D8D8D8;
+}
+
+    .search form {
+        width: 100%;
+    }
+
+    .search input[type="text"] {
+        margin: 0px 0;
+        padding: 8px 16px;
+        outline: none;
+        color: #5a5a5a;
+        background: none;
+        border: none;
+        width: 85.33333%;
+        line-height: 1.5em;
+        position: relative;
+        font-size: 0.8725em;
+        -webkit-appearance: none;
+        text-transform: capitalize;
+    }
+
+        .search input[type="text"]:hover {
+            background: #ffffff;
+        }
+
+    .search input[type="submit"] {
+        background: url('Images/PageElement/search.png') no-repeat 0px 1px;
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        outline: none;
+        position: absolute;
+        height: 24px;
+        top: 6px;
+        right: 5px;
+    }
+
+/* create_btn */
+.create_btn {
+    float: left;
+    width: 28%;
+}
+
+    .create_btn a {
+        text-transform: capitalize;
+        display: inline-block;
+        padding: 6px 16px;
+        font-size: 0.8725em;
+        font-weight: 300;
+        color: #ffffff;
+        background: #000000;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .create_btn a:hover {
+            background: #00405d;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .create_btn a img {
+            vertical-align: top;
+            margin-top: 3px;
+        }
+
+ul.megamenu.skyblue {
+    background: #f5f5f5;
+    font-family: "RoyaBold",Arial,Tahoma,Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.rgt-bottom {
+    margin-bottom: 1em;
+}
+/* start menu */
+
+.footer h4 {
+    color: #FF7F00;
+    font-weight: 400;
+    margin: 0;
+}
+
+.footer {
+    background: #141414;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+
+    .footer p {
+        margin: 1.5em 0 0;
+        font-size: 1em;
+        color: #ffffff;
+        font-weight: 400;
+        line-height: 1.8em;
+    }
+
+        .footer p a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+
+/* start women */
+.w_sidebar {
+    border: 1px solid #EBEBEB;
+}
+
+.w_sidebar h3 {
+    font-size: 1em;
+    color: #555555;
+    text-transform: uppercase;
+}
+/* radios and checkboxes */
+.sky-form {
+    margin-top: -10px;
+}
+
+
+
+    .sky-form.col.col-4 ul {
+        padding: 0;
+        list-style: none;
+    }
+
+    .sky-form h4 {
+        margin-top: 10px;
+        background: #ECECEC;
+        padding: 10px 20px;
+        color: #333333;
+        text-transform: uppercase;
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+
+    .sky-form section {
+        margin-bottom: 20px;
+    }
+
+
+h4.title {
+    color: #ff6978;
+    margin-bottom: 0.5em;
+    font-size: 1.6em;
+    line-height: 1.2em;
+    background: #F7F7F7;
+    padding: 1em;
+}
+
+p.cart {
+    color: #777;
+    font-size: 1.2em;
+    line-height: 1.8em;
+    text-align: left;
+}
+
+    p.cart a {
+        text-decoration: underline;
+        color: #ff6978;
+    }
+
+/*--media queries--*/
+@media (max-width:1024px) {
+    .grid_list {
+        padding-bottom: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    .header_right {
+        float: right;
+        width: 48%;
+    }
+
+
+    .footer {
+        padding: 2em 0;
+    }
+
+        .footer h4 {
+            color: coral;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+}
+
+@media (max-width:800px) {
+
+    .top_right {
+        float: left;
+    }
+
+    .top_bg {
+        text-align: center;
+    }
+
+    .w_sidebar {
+        margin-bottom: 3em;
+    }
+}
+
+@media (max-width:768px) {
+
+    .create_btn a {
+        padding: 6px 8px;
+        font-size: 0.750em;
+    }
+
+    .create_btn a {
+        padding: 6px 8px;
+        font-size: 0.750em;
+    }
+
+    .search input[type="text"] {
+        width: 79.33333%;
+    }
+
+    .footer h4 {
+        font-size: 0.975em;
+        font-weight: bold;
+    }
+
+    .footer p {
+        font-size: 0.875em;
+        text-align: center;
+    }
+
+    .footer {
+        padding: 2em 0 1em;
+    }
+
+    .box_1 {
+        width: 41%;
+    }
+}
+
+@media (max-width:640px) {
+    .create_btn a {
+        padding: 10px 5px;
+        font-size: 0.8125em;
+    }
+
+    .create_btn a {
+        padding: 3px 5px;
+        font-size: 0.7em;
+    }
+
+    .create_btn {
+        float: left;
+        width: 20%;
+    }
+
+    .header_right {
+        float: right;
+        width: 53%;
+    }
+
+    .rgt-bottom {
+        margin-bottom: 0.5em;
+    }
+
+    .logo {
+        float: left;
+        margin: 0.9em 0;
+    }
+
+    .footer h4 {
+        font-size: 0.8125em;
+    }
+
+    .box_1 {
+        float: left;
+        margin: 0.3em 0.1em 0;
+    }
+
+        .box_1 h3 {
+            font-size: 0.8125em;
+        }
+
+    .box_1 {
+        width: 43%;
+    }
+}
+
+@media (max-width:480px) {
+
+    .search {
+        display: none;
+    }
+
+    .top_right ul li {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+        .top_right ul li a {
+            padding: 0px 1px;
+            font-size: 11px;
+        }
+
+    .header_top {
+        padding: 13px 0 2px;
+    }
+
+    .header_right {
+        float: right;
+        width: 42%;
+    }
+
+    .logo {
+        margin: 0;
+    }
+
+
+    .rgt-bottom {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer p {
+        margin: 1em 0 0;
+    }
+
+    .box_1 p {
+        margin: 0em 0.3em 0;
+    }
+
+    .create_btn {
+        float: left;
+        width: 36%;
+    }
+
+    .box_1 {
+        width: 62%;
+    }
+}
+
+@media (max-width:320px) {
+
+    .logo {
+        float: left;
+        width: 45%;
+    }
+
+    .create_btn {
+        display: none;
+    }
+
+    .top_right ul li a {
+        padding: 0;
+        font-size: 11px;
+    }
+
+    .top_right {
+        float: none;
+        text-align: center;
+    }
+
+    .rgt-bottom {
+        margin: 0;
+        padding: 0em 0;
+    }
+
+
+
+    .header_right {
+        float: right;
+        width: 43%;
+        margin: 0 auto;
+    }
+
+
+
+    .footer h4 {
+        font-size: 0.8em;
+    }
+
+
+
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+
+
+    h4.title {
+        font-size: 1.4em;
+    }
+
+    p.cart {
+        font-size: 0.9em;
+    }
+
+
+
+    .box_1 {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 350px;
+}
+
+#noscript {
+    text-align: center;
+    color: white;
+    background-color: firebrick;
+}
+
+#IsProductFree {
+    direction: ltr;
+    margin-left: 810px;
+}
+
+#IsProductIsInIndex {
+    direction: ltr;
+    margin-left: 810px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+/*#region code dealing with file upload*/
+.clearfix {
+    *zoom: 1;
+}
+
+    .clearfix:before, .clearfix:after {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+
+    .clearfix:after {
+        clear: both;
+    }
+
+.hide-text {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+.input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.btn-file {
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+}
+
+    .btn-file > input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        transform: translate(-300px, 0) scale(4);
+        font-size: 23px;
+        direction: rtl;
+        cursor: pointer;
+    }
+
+.fileupload {
+    margin-bottom: 9px;
+}
+
+    .fileupload .uneditable-input {
+        display: inline-block;
+        margin-bottom: 0px;
+        vertical-align: middle;
+        cursor: text;
+    }
+
+    .fileupload .thumbnail {
+        overflow: hidden;
+        display: inline-block;
+        margin-bottom: 5px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+        .fileupload .thumbnail > img {
+            display: inline-block;
+            vertical-align: middle;
+            max-height: 100%;
+        }
+
+    .fileupload .btn {
+        vertical-align: middle;
+    }
+
+.fileupload-exists .fileupload-new, .fileupload-new .fileupload-exists {
+    display: none;
+}
+
+.fileupload-inline .fileupload-controls {
+    display: inline;
+}
+
+.fileupload-new .input-append .btn-file {
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.thumbnail-borderless .thumbnail {
+    border: none;
+    padding: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.fileupload-new.thumbnail-borderless .thumbnail {
+    border: 1px solid #ddd;
+}
+
+.control-group.warning .fileupload .uneditable-input {
+    color: #a47e3c;
+    border-color: #a47e3c;
+}
+
+.control-group.warning .fileupload .fileupload-preview {
+    color: #a47e3c;
+}
+
+.control-group.warning .fileupload .thumbnail {
+    border-color: #a47e3c;
+}
+
+.control-group.error .fileupload .uneditable-input {
+    color: #b94a48;
+    border-color: #b94a48;
+}
+
+.control-group.error .fileupload .fileupload-preview {
+    color: #b94a48;
+}
+
+.control-group.error .fileupload .thumbnail {
+    border-color: #b94a48;
+}
+
+.control-group.success .fileupload .uneditable-input {
+    color: #468847;
+    border-color: #468847;
+}
+
+.control-group.success .fileupload .fileupload-preview {
+    color: #468847;
+}
+
+.control-group.success .fileupload .thumbnail {
+    border-color: #468847;
+}
+/*#endregion*/
+
+
+#similarProduct {
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
+}
+
+.BodyContainer img {
+    max-width: 100%;
+    height: auto;
+}
+
+#overlay {
+    display: none;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5; /* also -moz-opacity, etc. */
+}
+
+#overlay_center {
+    opacity: 1;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+}

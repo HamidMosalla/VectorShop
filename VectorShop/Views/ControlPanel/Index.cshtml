@@ -1,0 +1,112 @@
+﻿@model VectorShop.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "کنترل پنل صفجه اصلی";
+}
+
+
+
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام محصول
+        </th>
+
+        <th class="panel-heading">
+            رایگان بودن محصول
+        </th>
+
+        <th class="panel-heading">
+            نمایش در صفحه اصلی
+        </th>
+
+        <th class="panel-heading">
+            تاریخ اضافه شدن
+        </th>
+
+        <th class="panel-heading">
+            قیمت محصول
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.Products)
+    {
+        <tr>
+
+            <td>
+                <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)">@item.ProductName</a>
+            </td>
+
+            <td>
+                @if (item.IsProductFree)
+                {
+                    @: بلی
+                }
+                else
+                {
+                    @: خیر
+                }
+
+            </td>
+
+            <td>
+                @if (item.IsProductIsInIndex)
+                {
+                    @: بلی
+                }
+                else
+                {
+                    @: خیر
+                }
+
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ProductDate)
+            </td>
+
+            <td>
+                @String.Format("{0:0}", item.ProductPrice)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان مقاله
+        </th>
+
+        <th class="panel-heading">
+            تاریخ مقاله
+        </th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.Article)
+    {
+        <tr>
+
+            <td>
+                <a href="/Article/Details/@item.ArticleId/@VectorShopUtility.StringDasher(item.ArticleTitle)">@item.ArticleTitle</a>
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ArticleDate)
+            </td>
+
+        </tr>
+    }
+
+</table>

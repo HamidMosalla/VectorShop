@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /Account/
+Disallow: /ControlPanel/
+Disallow: /FileManager/
+Disallow: /Manage/
+Disallow: /ProductFiles/
+
+# The sitemap must be an absolute URL
+#sitemap: http://mysite.com/sitemap.xml

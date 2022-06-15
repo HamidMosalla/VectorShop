@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Product>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "تمام محصولات با دسته بندی فرعی";
+}
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام محصول
+        </th>
+
+        <th class="panel-heading">
+            رایگان بودن محصول
+        </th>
+
+        <th class="panel-heading">
+            تاریخ اضافه شدن
+        </th>
+
+        <th class="panel-heading">
+            قیمت محصول
+        </th>
+        <th class="panel-heading">
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)">@item.ProductName</a>
+            </td>
+
+            <td>
+                @if (item.IsProductFree)
+                {
+                    <span style="color: green">بلی</span>
+                }
+                else
+                {
+                    <span style="color: #d54d4d">خیر</span>
+                }
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ProductDate)
+            </td>
+
+            <td>
+                @String.Format("{0:0}", item.ProductPrice)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ProductsSecCat", new { page }))
+</div>

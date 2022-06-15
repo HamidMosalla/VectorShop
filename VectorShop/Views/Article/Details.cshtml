@@ -1,0 +1,101 @@
+﻿@using VectorShop.Helpers
+@model VectorShop.Models.Article
+
+@{
+    ViewBag.Title = Model.ArticleTitle;
+ }
+
+
+
+@* TODO: don't forget to add sematic tagg like article and section to your page and fix picture in this page *@
+
+@section MetaTags{
+
+    <meta name="description" content="@Model.ArticleBody.SplitOnDot()">
+
+    @* TODO: add google plus profile here *@
+    @*<link rel="author" href="https://plus.google.com/[YOUR personal g+ profile here]" />*@
+
+
+    @*MetaData for faceBook openGraph*@
+    <meta property="og:title" content="@Model.ArticleTitle" />
+    <meta property="og:type" content="article" />
+    @*<meta property="og:image" content="@Server.MapPath("~" + Model.ArticlePicture)" />*@
+    <meta property="og:url" content="@Server.MapPath("/Article/Details/" + @Model.ArticleId + "/" + VectorShopUtility.StringDasher(Model.ArticleTitle))" />
+    <meta property="og:description" content="@Model.ArticleBody.SplitOnDot()" />
+    @* TODO: add facebook site_name here *@
+    @*<meta property="og:site_name" content="Your Site Name, i.e. VectorShop" />*@
+    @* TODO: add facebook userid here *@
+    @*<meta property="fb:admins" content="USER_ID" />*@
+    @* TODO: add facebook app_id here *@
+    @*<meta property="fb:app_id" content="Your FB_APP_ID" />*@
+
+    @*MetaData for twitter Cards*@
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="@Server.MapPath("/Article/Details/" + @Model.ArticleId + "/" + VectorShopUtility.StringDasher(Model.ArticleTitle))">
+    <meta name="twitter:title" content="@Model.ArticleTitle">
+    <meta name="twitter:description" content="@Model.ArticleBody.SplitOnDot()">
+    @*<meta name="twitter:image" content="@Server.MapPath("~" + Model.ArticlePicture)">*@
+    @*TODO: change this with publisher_handle*@
+    @*<meta name="twitter:site" content="Your @publisher_handle">*@
+    @*TODO: change this with author_handle*@
+    @*<meta name="twitter:creator" content="Your @author_handle">*@
+    @*TODO: change this with the name of actual domain when project is finished.*@
+    <meta name="twitter:domain" content="webfor.ir" />
+
+    @*MetaData for GooglePlus Schema.Org*@
+    <meta itemprop="name" content="@Model.ArticleTitle">
+    <meta itemprop="description" content="@Model.ArticleBody.SplitOnDot()">
+    @*<meta itemprop="image" content="@Server.MapPath("~" + Model.ArticlePicture)">*@
+
+    <link rel="canonical" href="@Server.MapPath("/Article/Details/" + @Model.ArticleId + "/" + VectorShopUtility.StringDasher(Model.ArticleTitle))" />
+    
+}
+
+<div style="padding-left: 10px; padding-right: 10px;">
+
+
+    <h1>@Model.ArticleTitle</h1>
+    <span>@PersianDateTime.GregorianDateToPersianLong(@Model.ArticleDate)</span>
+
+
+    <div>
+
+        <hr />
+
+        <article>
+            <div class="BodyContainer" style="padding-left: 30px; padding-right: 30px;">
+                @Html.Raw(Model.ArticleBody)
+            </div>
+        </article>
+
+
+    </div>
+
+
+
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'vectorshop';
+        var disqus_identifier =  @Model.ArticleId;
+        //var disqus_url = 'localhost:4174/Article/Details/' + @*@Model.ArticleId*@; disqus does not support unicode character
+    //var disqus_title = '+ @*@Model.ArticleTitle*@ +'; disqus does not support unicode character
+    //var disqus_url = '+ @*@HttpContext.Current.Request.Url*@ +';
+
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</div>

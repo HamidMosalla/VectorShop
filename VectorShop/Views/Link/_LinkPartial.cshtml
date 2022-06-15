@@ -1,0 +1,7 @@
+﻿@model IEnumerable<VectorShop.Models.Link>
+
+@foreach (var item in Model)
+{
+    <a href="@item.LinkUrl">@item.LinkTitle</a>
+    <br/>
+}

@@ -1,0 +1,153 @@
+﻿@model VectorShop.Models.NewDesignOrder
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "جزئیات سفارش";
+}
+
+<table class="table">
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            عنوان سفارش
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderTitle)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            نام و نام خانوادگی سفارش دهنده
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderName)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            تاریخ سفارش
+        </th>
+
+        <td class="col-lg-8">
+            @PersianDateTime.GregorianDateToPersianLong(Model.NewDesignOrderDate)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            ایمیل سفارش
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderEmail)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            شماره تلفن سفارش دهنده
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderPhone)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            طریقه آشنا شدن با سایت
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderHowFindUs)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            بودجه سفارش
+        </th>
+
+        <td class="col-lg-8">
+            <label>@String.Format("{0:0}", Model.NewDesignOrderMaxAffordablePrice) تومان</label>
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            وب سایت سفارش دهنده
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderWebSite)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            آدرس سفارش دهنده
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderAddress)
+        </td>
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            عکس سفارش
+        </th>
+
+        @if (@Model.NewDesignOrderPicture != null)
+        {
+            <td class="col-lg-8">
+                <a href="@Model.NewDesignOrderPicture"><img src="@Model.NewDesignOrderPicture" class="col-lg-8 img-responsive" /></a>
+            </td>
+        }
+        else
+        {
+            <td class="col-lg-8">
+                فاقد عکس
+            </td>
+        }
+
+    </tr>
+
+    <tr class="panel panel-default">
+
+        <th class="col-lg-2 panel-heading">
+            توضیحات سفارش
+        </th>
+
+        <td class="col-lg-8">
+            @Html.DisplayFor(model => model.NewDesignOrderDescBody)
+        </td>
+
+    </tr>
+</table>
+

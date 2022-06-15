@@ -1,0 +1,62 @@
+﻿@using VectorShop.Helpers
+@model IEnumerable<VectorShop.Models.Product>
+
+<div class="row">
+    <div class="col-md-12">
+        
+        @foreach (var item in Model)
+        {
+
+
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="padding-right: 5px; padding-left: 5px;">
+                <div class="thumbnail">
+                    <h4 class="text-center"><span class="label label-default">@item.ProductName</span></h4>
+                    <p class="text-center" style="font-size: small;">@PersianDateTime.GregorianDateToPersianLong(item.ProductDate)</p>
+                    <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)"><img src="@item.ProductPicture" alt="@item.ProductName" class="img-responsive"></a>
+
+
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 price">
+                                <br/>
+                                <h4 class="text-center">
+                                    قیمت:
+                                    @{
+            if (item.IsProductFree)
+            {
+                            <label style="color: limegreen;">رایگان</label>
+
+            }
+            else
+            {
+                            <label>@String.Format("{0:0}", item.ProductPrice) تومان</label>
+            }
+                                    }
+
+                                </h4>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="font-size: small;" class="col-md-12 col-xs-12 price">
+                                
+                                @Html.Raw(item.ProductDescription.TrimFrontIfLongerThan(200))
+                                <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)">ادامه...</a>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="#" class="btn btn-success" style="width: 100%;"><span class="glyphicon glyphicon-shopping-cart"></span>افزودن به سبد</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

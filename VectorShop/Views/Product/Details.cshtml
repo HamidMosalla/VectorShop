@@ -1,0 +1,161 @@
+﻿@using VectorShop.Helpers
+@model VectorShop.Models.Product
+
+@{
+    ViewBag.Title = Model.ProductName;
+}
+
+
+
+@* TODO: don't forget to add sematic tagg like article and section to your page and fix picture in this page *@
+
+@section MetaTags{
+
+    <meta name="description" content="@Model.ProductDescription.SplitOnDot()">
+
+    @* TODO: add google plus profile here *@
+    @*<link rel="author" href="https://plus.google.com/[YOUR personal g+ profile here]" />*@
+
+
+    @*MetaData for faceBook openGraph*@
+    <meta property="og:title" content="@Model.ProductName" />
+    <meta property="og:type" content="product" />
+    <meta property="og:image" content="@Server.MapPath("~/Content/Images/Product/" + Model.ProductPicture)" />
+    <meta property="og:url" content="@Server.MapPath("/Product/Details/" + @Model.ProductId + "/" + VectorShopUtility.StringDasher(Model.ProductName))" />
+    <meta property="og:description" content="@Model.ProductDescription.SplitOnDot()"/>
+    @* TODO: add facebook site_name here *@
+    @*<meta property="og:site_name" content="Your Site Name, i.e. VectorShop" />*@
+    @* TODO: add facebook userid here *@
+    @*<meta property="fb:admins" content="USER_ID" />*@
+    @* TODO: add facebook app_id here *@
+    @*<meta property="fb:app_id" content="Your FB_APP_ID" />*@
+    
+
+    @*MetaData for twitter Cards*@
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="@Server.MapPath("/Product/Details/" + @Model.ProductId + "/" + VectorShopUtility.StringDasher(Model.ProductName))">
+    <meta name="twitter:title" content="@Model.ProductName">
+    <meta name="twitter:description" content="@Model.ProductDescription.SplitOnDot()">
+    <meta name="twitter:image" content="@Server.MapPath("~/Content/Images/Product/" + Model.ProductPicture)">
+    @*TODO: change this with publisher_handle*@
+    @*<meta name="twitter:site" content="Your @publisher_handle">*@
+    @*TODO: change this with author_handle*@
+    @*<meta name="twitter:creator" content="Your @author_handle">*@
+    @*TODO: change this with the name of actual domain when project is finished.*@
+    <meta name="twitter:domain" content="webfor.ir" />
+   
+
+    @*MetaData for GooglePlus Schema.Org*@
+    <meta itemprop="name" content="@Model.ProductName">
+    <meta itemprop="description" content="@Model.ProductDescription.SplitOnDot()">
+    <meta itemprop="image" content="@Server.MapPath("~/Content/Images/Product/" + Model.ProductPicture)">
+
+    <link rel="canonical" href="@Server.MapPath("/Product/Details/" + @Model.ProductId + "/" + VectorShopUtility.StringDasher(Model.ProductName))" />
+
+}
+
+<div style="padding-left: 10px; padding-right: 10px;">
+
+
+    <h1>@Model.ProductName</h1>
+    <span>@PersianDateTime.GregorianDateToPersianLong(@Model.ProductDate)</span>
+
+
+    <div>
+
+        <hr />
+
+        <article>
+            <div class="BodyContainer" style="padding-left: 30px; padding-right: 30px;">
+                @Html.Raw(Model.ProductDescription)
+            </div>
+        </article>
+
+        <hr />
+        <br />
+        <div style="text-align: center">
+
+
+            <h4>
+                قیمت:
+                @{
+                    if (Model.IsProductFree)
+                    {
+                        <label>رایگان</label>
+
+                    }
+                    else
+                    {
+                        <label>@String.Format("{0:0}", Model.ProductPrice) تومان</label>
+                    }
+                }
+
+            </h4>
+
+            @{
+                if (Model.IsProductFree)
+                {
+                    <a href="@Model.ProductDownloadLink"
+                       class="btn btn-primary">
+                        <span class="glyphicon glyphicon-download"></span>
+                        دانلود
+                    </a>
+
+                }
+                else
+                {
+                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span>افزودن به سبد</a>
+                }
+            }
+
+
+        </div>
+
+        @if (ViewBag.PriCatTitle != null)
+        {
+            <div style="font-size: large">
+                <span>برچسب ها : </span>
+
+                <a style="background-color: #fb8a3a;" href="/Product/ProductsPriCat/@ViewBag.PriCatId/@VectorShopUtility.StringDasher(ViewBag.PriCatTitle)"
+                   class="label label-info">
+                    <span class="glyphicon glyphicon-tag"></span>
+                    @ViewBag.PriCatTitle
+                </a>
+
+                @if (ViewBag.SecCatTitle != null)
+                {
+                    <a style="background-color: #f8ab3f;" href="/Product/ProductsSecCat/@ViewBag.SecCatId/@VectorShopUtility.StringDasher(ViewBag.SecCatTitle)"
+                       class="label label-info">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        @ViewBag.SecCatTitle
+                    </a>
+                }
+
+            </div>
+        }
+
+        <br />
+        <br />
+        @if (ViewBag.SimilarProduct != null)
+        {
+            <div style="max-width: 600px;" class="panel panel-default links center">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">
+                        محصولات مشابه
+                    </h3>
+                </div>
+
+                @foreach (var item in ViewBag.SimilarProduct)
+                {
+                    <div style="overflow: auto;">
+                        <a style="padding: 5px;" href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)">@item.ProductName</a>
+                        <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)"><img src="@item.ProductPicture" class="img-responsive img-thumbnail" style="min-height: 100px; height: 100px; float: left;"></a>
+                    </div>
+                    <hr style="margin: 0; padding: 0;" />
+                }
+            </div>
+        }
+
+    </div>
+</div>
+

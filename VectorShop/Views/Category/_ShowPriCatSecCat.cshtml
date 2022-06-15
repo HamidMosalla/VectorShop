@@ -1,0 +1,35 @@
+﻿@model VectorShop.Models.ViewModels.PriCatSecCatViewModel
+
+
+<table class="table">
+    <tr>
+        <th><h4>دسته بندی های ایجاد شده</h4></th>
+    </tr>
+
+    @foreach (var priCatItem in Model.PriCat)
+    {
+        <tr class="links" style="color: #d45e0a">
+            <td>
+                @Html.DisplayFor(model => priCatItem.PriCatTitle)
+                @Html.ActionLink("ویرایش", "Edit", new { priCatId = priCatItem.PriCatId }) |
+                @Html.ActionLink("حذف", "Delete", new { priCatId = priCatItem.PriCatId }, new { @class = "deleteLink" + " " + priCatItem.PriCatId })
+            </td>
+        </tr>
+
+        foreach (var secCatItem in Model.SecCat)
+        {
+            if (priCatItem.PriCatId == secCatItem.PriCatIDfk)
+            {
+                <tr class="links" style="color: #ad8608">
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_
+                        @Html.DisplayFor(model => secCatItem.SecCatTitle)
+                        @Html.ActionLink("ویرایش", "Edit", new { secCatId = secCatItem.SecCatId }) |
+                        @Html.ActionLink("حذف", "Delete", new { secCatId = secCatItem.SecCatId }, new { @class = "deleteLink" + " " + priCatItem.PriCatId })
+                    </td>
+                </tr>
+            }
+        }
+    }
+
+</table>

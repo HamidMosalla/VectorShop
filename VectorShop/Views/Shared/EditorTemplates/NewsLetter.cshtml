@@ -1,0 +1,43 @@
+﻿@*@model VectorShop.Models.NewsLetter
+
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.NewsLetterSubscriberName)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.NewsLetterEmail)
+    </td>
+
+    <td>
+        @(Model.PriCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => Model.PriCat.PriCatTitle).ToString())
+    </td>
+
+    <td>
+        @(Model.SecCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => Model.SecCat.SecCatTitle).ToString())
+    </td>
+
+    <td>
+        @if (Model.IsActive)
+        {
+            <span style="color: green">بلی</span>
+        }
+        else
+        {
+            <span style="color: #d54d4d">خیر</span>
+        }
+
+    </td>
+
+    <td>
+        <input type="checkbox" name="IsSelected" checked="@item.IsSelected" value="@item.IsSelected.ToString()"/> ToString because the value will be empty
+        <input type="hidden" name="IsSelected" value="@item.IsSelected" />
+        <input type="hidden" name="NewsLetterId" value="@item.NewsLetterId" />
+        @Html.EditorFor(model => Model.IsSelected)
+        @Html.HiddenFor(model => item.NewsLetterId)
+        @Html.CheckBoxFor(model => item.IsSelected)
+    </td>
+
+</tr>*@
+

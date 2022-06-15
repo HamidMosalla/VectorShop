@@ -1,0 +1,7 @@
+﻿@model IEnumerable<VectorShop.Models.Article>
+
+@foreach (var item in Model)
+{
+    <a href="/Article/Details/@(item.ArticleId + "/" + VectorShopUtility.StringDasher(item.ArticleTitle))">@item.ArticleTitle</a>
+    <br />
+}

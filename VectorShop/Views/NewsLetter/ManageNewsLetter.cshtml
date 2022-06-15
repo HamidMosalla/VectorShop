@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.NewsLetter>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت خبرنامه";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام عضو
+        </th>
+
+        <th class="panel-heading">
+            ایمیل عضو
+        </th>
+
+        <th class="panel-heading">
+            علاقه مندی اصلی عضو
+        </th>
+
+        <th class="panel-heading">
+            علاقه مندی فرعی عضو
+        </th>
+
+        <th class="panel-heading">
+            فعال بودن عضو
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsLetterSubscriberName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsLetterEmail)
+            </td>
+
+            <td>
+                @(item.PriCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => item.PriCat.PriCatTitle).ToString())
+            </td>
+
+            <td>
+                @(item.SecCatIDfk == null ? "فاقد علاقه مندی" : Html.DisplayFor(modelItem => item.SecCat.SecCatTitle).ToString())
+            </td>
+
+            <td>
+                @if (item.IsActive)
+                {
+                    <span style="color: green">بلی</span>
+                }
+                else
+                {
+                    <span style="color: #d54d4d">خیر</span>
+                }
+
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new { id = item.NewsLetterId }, new { @class = "NewsLetterDeleteLink" }) |
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.NewsLetterId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageNewsLetter", new { page }))
+</div>

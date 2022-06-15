@@ -1,0 +1,43 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Article>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "آخرین مقالات";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان مقاله
+        </th>
+
+        <th class="panel-heading">
+            تاریخ مقاله
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                <a href="/Article/Details/@item.ArticleId/@VectorShopUtility.StringDasher(item.ArticleTitle)">@item.ArticleTitle</a>
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ArticleDate)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

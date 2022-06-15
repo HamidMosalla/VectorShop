@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Product>
+@using PagedList;
+@using PagedList.Mvc;
+
+<table class="table links">
+    
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            نام محصول
+        </th>
+
+        <th class="panel-heading">
+            تاریخ عرضه
+        </th>
+
+        <th class="panel-heading">
+            قیمت محصول
+        </th>
+
+        <th class="panel-heading">
+            رایگان بودن
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Product/Details/@item.ProductId/@VectorShopUtility.StringDasher(item.ProductName)">@item.ProductName</a>
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.ProductDate)
+            </td>
+
+            <td>
+                @String.Format("{0:0}", item.ProductPrice) &nbsp;&nbsp; تومان
+            </td>
+
+            <td>
+                @if (item.IsProductFree)
+                {
+                    <span style="color: green">بلی</span>
+                }
+                else
+                {
+                    <span style="color: #d54d4d">خیر</span>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Search", new { page = page, q = Request["q"], proSort = Request["proSort"], catSort = Request["catSort"] }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" }))
+

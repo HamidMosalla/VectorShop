@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.Advert>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت تبلیغات";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان تبلیغات
+        </th>
+
+        <th class="panel-heading">
+            لینک تبلیغات
+        </th>
+
+        <th class="panel-heading">
+            تاریخ تبلیغات
+        </th>
+
+        <th class="panel-heading">
+            اولویت تبلیغات
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AdvertTitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AdvertUrl)
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.AdvertDateAdded)
+            </td>
+
+            <td>
+               @Html.DisplayFor(modelItem => item.AdvertPriority)
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new { id = item.AdvertId }, new { @class = "AdvertDeleteLink" }) |
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.AdvertId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageAdvert", new { page }))
+</div>

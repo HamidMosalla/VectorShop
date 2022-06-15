@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "آمار بازدید سایت";
+}
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+
+
+        <div class="form-group">
+            @Html.Label("تعداد بازدید چند روز قبل؟", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                <input type="text" name="days" id="days" class="form-control" placeholder="در این فیلد مشخص کنید بازدید چند روز قبل را میخواهید ببینید."/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("تعداد رکوردهای قابل نمایش", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                <input type="text" name="maxResult" id="maxResult" class="form-control" placeholder="در این فیلد مشخص کنید چه تعداد بازدید را میخواهید ببینید."/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("نمایش بر اساس دسته بندی", htmlAttributes: new {@class = "control-label col-md-4"})
+            <div class="col-md-8">
+                <select name="filter">
+                    <option value="" selected="selected">بازدید های کلی</option>
+                    <option value="Article/Details">بازدید های مقالات</option>
+                    <option value="Product/Details">بازدید های محصولات</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ثبت" class="btn btn-default"/>
+            </div>
+        </div>
+
+
+    </div>
+}
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            لینک صفحه
+        </th>
+
+        <th class="panel-heading">
+            تعداد بازدید
+        </th>
+
+        <th class="panel-heading">
+            تعداد بازدید واقعی
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+
+
+    @for (int i = 0; i < ViewBag.Page.Count; i++)
+    {
+  
+    
+    <tr>
+
+        <td style="direction: ltr;">
+            <a href="@ViewBag.Page[i]">@ViewBag.Page[i]</a>
+        </td>
+
+        <td>
+            @ViewBag.Pageviews[i]
+        </td>
+
+        <td>
+            @ViewBag.UniquePageviews[i]
+        </td>
+
+    </tr>
+    }
+
+
+</table>

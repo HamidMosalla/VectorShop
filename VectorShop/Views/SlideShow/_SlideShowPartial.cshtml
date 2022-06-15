@@ -1,0 +1,88 @@
+﻿@model IEnumerable<VectorShop.Models.SlideShow>
+
+@{
+    int slideShowNumber = ViewBag.SlideShowNumber;
+}
+
+<style>
+    .item {
+        background: #808080;
+        text-align: center;
+        height: auto !important;
+    }
+    /*#myCarousel {
+        margin-left: 100px;
+        margin-right: 100px;
+    }*/
+</style>
+
+
+<div id="myCarousel" class="carousel slide" data-interval="5000" data-ride="carousel">
+    <!-- Carousel indicators -->
+    <ol class="carousel-indicators">
+        @for (int i = 0; i < slideShowNumber; i++)
+        {
+            if (i == 0)
+            {
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                continue;
+            }
+            <li data-target="#myCarousel" data-slide-to="@i"></li>
+        }
+    </ol>
+
+
+    <!-- Wrapper for carousel items -->
+    <div class="carousel-inner">
+
+
+
+
+        <div class="active item">
+            <a href="@Model.First().SlideShowLink">
+                <img class="center" src="@Model.First().SlideShowPictrure" alt="@Model.First().SlideShowTitle">
+
+                <div class="carousel-caption">
+                    <h3>@Model.First().SlideShowTitle</h3>
+                    @if (Model.First().SlideShowDescription != null)
+                    {
+                        <p>@Model.First().SlideShowDescription</p>
+                    }
+                </div>
+            </a>
+        </div>
+
+
+        @foreach (var item in Model.Skip(1).Take(slideShowNumber - 1))
+        {
+
+
+            <div class="item">
+                <a href="@item.SlideShowLink">
+                    <img class="center" src="@item.SlideShowPictrure" alt="@item.SlideShowTitle">
+
+                    <div class="carousel-caption">
+                        <h3>@item.SlideShowTitle</h3>
+                        @if (item.SlideShowDescription != null)
+                        {
+                            <p>@item.SlideShowDescription</p>
+                        }
+                    </div>
+                </a>
+            </div>
+        }
+
+
+
+    </div>
+
+    <!-- Carousel controls -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+
+</div>

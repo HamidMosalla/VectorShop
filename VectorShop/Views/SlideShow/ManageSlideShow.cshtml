@@ -1,0 +1,77 @@
+﻿@model PaginatedList<VectorShop.Models.SlideShow>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت سلاید شو";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="col-md-2 panel-heading">
+            عنوان سلاید شو
+        </th>
+
+        <th class="panel-heading">
+            توضیحات سلاید شو
+        </th>
+
+        <th class="col-md-2 panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideShowTitle)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SlideShowDescription)
+            </td>
+
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.SlideShowId }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.SlideShowId }, new { @class = "SlideShowDeleteLink" })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+
+    <ul id="PaginationIndex" data-pageindex="@Model.PageIndex" class="pagination">
+
+        <li><a href="/SlideShow/ManageSlideShow/Page/@Model.TotalPages">&laquo;&laquo;</a></li>
+
+        @if (Model.HasNextPage)
+        {
+            <li><a href="/SlideShow/ManageSlideShow/Page/@(Model.PageIndex + 1) ">&laquo;</a></li>
+        }
+
+        @for (int i = Model.TotalPages; i >= 0; i--)
+        {
+            <li class="PaginationAnchor"><a href="/SlideShow/ManageSlideShow/Page/@i">@i</a></li>
+        }
+
+        @if (Model.HasPreviousPage)
+        {
+            <li><a href="/SlideShow/ManageSlideShow/Page/@(Model.PageIndex - 1) ">&raquo;</a></li>
+        }
+
+        <li><a href="/SlideShow/ManageSlideShow/Page/0">&raquo;&raquo;</a></li>
+
+    </ul>
+
+</div>

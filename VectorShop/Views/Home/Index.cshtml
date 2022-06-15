@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "صفحه ی اصلی";
+}
+
+@{
+    Layout = "~/Views/Shared/_IndexLayout.cshtml";
+}
+
+@{ Html.RenderAction("SlideShowPartial", "SlideShow"); }
+
+<br />
+<div>
+
+    <a id="scrollRight" style="margin-top: 145px; padding: 12px;" class="pull-right" href="#">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+    <a id="scrollLeft" style="margin-top: 145px; padding: 12px;" class="pull-left" href="#">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="panel-title text-center" style="color: #000000;">
+                محبوب ترین محصولات
+            </h4>
+        </div>
+
+        <div id="selectedContainer" style="overflow: hidden; white-space: nowrap;">
+            @{ Html.RenderAction("SelectedProductPartial", "Product"); }
+        </div>
+
+    </div>
+
+
+</div>
+
+<br />
+
+<div>
+
+    <a id="scrollRightNew" style="margin-top: 145px; padding: 12px;" class="pull-right" href="#">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+    <a id="scrollLeftNew" style="margin-top: 145px; padding: 12px;" class="pull-left" href="#">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="panel-title text-center" style="color: #000000;">
+                جدیدترین محصولات
+            </h4>
+        </div>
+
+        <div id="NewestContainer" style="overflow: hidden; white-space: nowrap;">
+            @{ Html.RenderAction("NewestProductPartial", "Product"); }
+        </div>
+
+    </div>
+
+
+</div>
+
+<br />
+
+
+<div>
+
+    <a id="scrollRightMostViewd" style="margin-top: 145px; padding: 12px;" class="pull-right" href="#">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+
+    <a id="scrollLeftMostViewd" style="margin-top: 145px; padding: 12px;" class="pull-left" href="#">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h4 class="panel-title text-center" style="color: #000000;">
+                پربازدیدترین محصولات
+            </h4>
+        </div>
+
+        <div id="MostViewdContainer" style="overflow: hidden; white-space: nowrap;">
+            @{ Html.RenderAction("MostViewedProductPartial", "Product"); }
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h4 class="panel-title text-center" style="color: #000000;">
+            تبلیغات
+        </h4>
+    </div>
+
+    <div class="text-center">
+        @{ Html.RenderAction("AdvertPartialInline", "Advert"); }
+    </div>
+
+</div>
+
+
+
+
+<div class="col-md-3 col-sm-6 panel panel-default links" style="margin: 0; padding: 0;">
+
+    <div class="panel-heading">
+        <h4 class="panel-title text-center" style="color: #000000;">
+            لینک دونی
+        </h4>
+    </div>
+
+    <div style="margin: 5px; padding: 5px;">
+        @{ Html.RenderAction("LinkPartial", "Link"); }
+    </div>
+
+</div>
+
+
+
+<div class="col-md-3 col-sm-6 panel panel-default links" style="margin: 0; padding: 0;">
+
+    <div class="panel-heading">
+        <h4 class="panel-title text-center" style="color: #000000;">
+            آخرین مقالات
+        </h4>
+    </div>
+
+    <div style="margin: 5px; padding: 5px;">
+        @{ Html.RenderAction("ArticlePartial", "Article"); }
+    </div>
+
+</div>
+
+
+
+<div class="col-md-3 col-sm-6 panel panel-default links" style="margin: 0; padding: 0;">
+
+    <div class="panel-heading">
+        <h4 class="panel-title text-center" style="color: #000000;">
+            آخرین محصولات رایگان
+        </h4>
+    </div>
+
+    <div style="margin: 5px; padding: 5px;">
+        @{ Html.RenderAction("FreeProductPartial", "Product"); }
+    </div>
+
+</div>
+
+<div class="col-md-3 col-sm-6 panel panel-default links" style="margin: 0; padding: 0;">
+
+    <div class="panel-heading">
+        <h4 class="panel-title text-center" style="color: #000000;">
+            محصولات بر اساس دسته بندی
+        </h4>
+    </div>
+
+    <div style="margin: 5px; padding: 5px;">
+        @{ Html.RenderAction("ProductsCatPartial", "Product"); }
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        var ms_ie = false;
+        var ua = window.navigator.userAgent;
+        var old_ie = ua.indexOf('MSIE ');
+        var new_ie = ua.indexOf('Trident/');
+
+        if ((old_ie > -1) || (new_ie > -1)) {
+            ms_ie = true;
+        }
+
+
+        $("#scrollLeft").on("click", function (e) {
+            e.preventDefault();
+            var scroll;
+            if (ms_ie) {
+                scroll = $("#selectedContainer").scrollLeft();
+                $("#selectedContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            } else {
+                scroll = $("#selectedContainer").scrollLeft();
+                $("#selectedContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            }
+
+
+        });
+
+        $("#scrollRight").on("click", function (e) {
+            e.preventDefault();
+            var scroll;
+            if (ms_ie) {
+                scroll = $("#selectedContainer").scrollLeft();
+                $("#selectedContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            } else {
+                scroll = $("#selectedContainer").scrollLeft();
+                $("#selectedContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            }
+
+        });
+
+        $("#scrollLeftNew").on("click", function (e) {
+            e.preventDefault();
+            var scroll;
+            if (ms_ie) {
+                scroll = $("#NewestContainer").scrollLeft();
+                $("#NewestContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            } else {
+                scroll = $("#NewestContainer").scrollLeft();
+                $("#NewestContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            }
+
+        });
+
+        $("#scrollRightNew").on("click", function (e) {
+            e.preventDefault();
+            var scroll;
+            if (ms_ie) {
+                scroll = $("#NewestContainer").scrollLeft();
+                $("#NewestContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            } else {
+                scroll = $("#NewestContainer").scrollLeft();
+                $("#NewestContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            }
+
+        });
+
+        $("#scrollLeftMostViewd").on("click", function (e) {
+            e.preventDefault();
+            var scroll;
+            if (ms_ie) {
+                scroll = $("#MostViewdContainer").scrollLeft();
+                $("#MostViewdContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            } else {
+                scroll = $("#MostViewdContainer").scrollLeft();
+                $("#MostViewdContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll + 300);
+            }
+
+        });
+
+        $("#scrollRightMostViewd").on("click", function (e) {
+            e.preventDefault();
+
+            if (ms_ie) {
+                var scroll = $("#MostViewdContainer").scrollLeft();
+                $("#MostViewdContainer").animate({ scrollLeft: scroll - 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            } else {
+                var scroll = $("#MostViewdContainer").scrollLeft();
+                $("#MostViewdContainer").animate({ scrollLeft: scroll + 1200 }, 800);
+                //$("#selectedContainer").scrollLeft(scroll - 300);
+            }
+
+        });
+
+    </script>
+}
+

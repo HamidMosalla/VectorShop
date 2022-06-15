@@ -1,0 +1,14 @@
+﻿@model VectorShop.Models.ViewModels.FileViewModel
+@{
+    ViewBag.Title = "Files";
+    Layout = "";
+}
+
+@* Bundles with elFinder's CSS and JavaScript files configured in App_Start\BundleConfig.cs*@
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jquery-ui")
+@Styles.Render("~/Content/jquery-ui")
+@Styles.Render("~/Content/elfinder")
+@Scripts.Render("~/Scripts/elfinder")
+
+@Html.Partial("FilesForm", Model)

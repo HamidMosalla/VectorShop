@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<VectorShop.Models.NewDesignOrder>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    ViewBag.Title = "مدیریت سفارش های جدید";
+}
+
+@Html.AntiForgeryToken()
+
+<table class="table links">
+    <tr class="panel panel-default">
+
+        <th class="panel-heading">
+            عنوان سفارش
+        </th>
+
+        <th class="panel-heading">
+            تاریخ سفارش
+        </th>
+
+        <th class="panel-heading">
+            نام سفارش دهنده
+        </th>
+
+        <th class="panel-heading">
+            ایمیل سفارش دهنده
+        </th>
+
+        <th class="panel-heading">
+            بودجه سفارش دهنده
+        </th>
+
+        <th class="panel-heading">
+            طریقه اشنایی با سایت
+        </th>
+
+        <th class="panel-heading">
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewDesignOrderTitle)
+            </td>
+
+            <td>
+                @PersianDateTime.GregorianDateToPersianLong(item.NewDesignOrderDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewDesignOrderName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewDesignOrderEmail)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NewDesignOrderMaxAffordablePrice)
+            </td>
+
+            <td>
+               @Html.DisplayFor(modelItem => item.NewDesignOrderHowFindUs)
+            </td>
+
+            <td>
+                @Html.ActionLink("حذف", "Delete", new { id = item.NewDesignOrderId }, new { @class = "NewDesignOrderDeleteLink" }) |
+                @Html.ActionLink("جزئیات", "Details", new { id = item.NewDesignOrderId })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("ManageNewDesignOrder", new { page }))
+</div>
